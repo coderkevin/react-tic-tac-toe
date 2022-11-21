@@ -26,8 +26,8 @@ const TicTacToeGrid: FunctionComponent<TicTacToeGridProps> = ({
 
 const StyledTicTacToeGrid = styled(TicTacToeGrid)`
   display: grid;
-  grid-template-rows: repeat(${(props) => props.gridData.length}, 3em);
-  grid-template-columns: repeat(${(props) => props.gridData[0].length}, 3em);
+  grid-template-rows: repeat(${(props) => props.gridData.length}, 100px);
+  grid-template-columns: repeat(${(props) => props.gridData[0].length}, 100px);
 `;
 
 export default StyledTicTacToeGrid;
