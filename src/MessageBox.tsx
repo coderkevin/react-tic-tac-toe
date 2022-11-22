@@ -1,8 +1,9 @@
-import { FunctionComponent, ReactNode } from "react";
+import { FunctionComponent } from "react";
 import styled from "@emotion/styled/macro";
+import { GameData } from "./game";
 
 interface MessageBoxProps {
-  children: ReactNode;
+  game: GameData;
 }
 
 const StyledBox = styled.div`
@@ -14,8 +15,20 @@ const StyledBox = styled.div`
   padding: 0.5em;
 `;
 
-const MessageBox: FunctionComponent<MessageBoxProps> = ({ children }) => {
-  return <StyledBox>{children}</StyledBox>;
+const generateMessage = (game: GameData): string => {
+  if (game.gameOver) {
+    if (game.winner > 0) {
+      return `Player ${game.winner} wins!`;
+    } else {
+      return "Game Over - Tie";
+    }
+  } else {
+    return `Player ${game.currentPlayer} turn. Click a box.`;
+  }
+};
+
+const MessageBox: FunctionComponent<MessageBoxProps> = ({ game }) => {
+  return <StyledBox>{generateMessage(game)}</StyledBox>;
 };
 
 export default MessageBox;

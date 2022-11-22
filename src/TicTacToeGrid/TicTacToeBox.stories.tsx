@@ -1,17 +1,11 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { BoxContent } from "../types";
 
 import TicTacToeBox from "./TicTacToeBox";
 
 export default {
   title: "Components/TicTacToeBox",
   component: TicTacToeBox,
-  argTypes: {
-    content: {
-      control: "select",
-      options: [BoxContent.Empty, BoxContent.X, BoxContent.O],
-    },
-  },
+  argTypes: {},
 } as ComponentMeta<typeof TicTacToeBox>;
 
 const Template: ComponentStory<typeof TicTacToeBox> = (args) => (
@@ -20,15 +14,15 @@ const Template: ComponentStory<typeof TicTacToeBox> = (args) => (
 
 export const Empty = Template.bind({});
 Empty.args = {
-  content: BoxContent.Empty,
+  content: 0,
 };
 
 export const X = Template.bind({});
 X.args = {
-  content: BoxContent.X,
+  content: 1,
 };
 
 export const O = Template.bind({});
 O.args = {
-  content: BoxContent.O,
+  content: 2,
 };

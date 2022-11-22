@@ -1,5 +1,4 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
-import { BoxContent } from "../types";
 
 import TicTacToeGrid from "./TicTacToeGrid";
 
@@ -18,35 +17,35 @@ const Template: ComponentStory<typeof TicTacToeGrid> = (args) => (
 export const Mixed3x3 = Template.bind({});
 Mixed3x3.args = {
   gridData: [
-    [BoxContent.X, BoxContent.Empty, BoxContent.X],
-    [BoxContent.O, BoxContent.X, BoxContent.Empty],
-    [BoxContent.Empty, BoxContent.O, BoxContent.O],
+    [1, 0, 1],
+    [2, 1, 0],
+    [0, 2, 2],
   ],
 };
 
 export const Empty3x3 = Template.bind({});
 Empty3x3.args = {
   gridData: [
-    [BoxContent.Empty, BoxContent.Empty, BoxContent.Empty],
-    [BoxContent.Empty, BoxContent.Empty, BoxContent.Empty],
-    [BoxContent.Empty, BoxContent.Empty, BoxContent.Empty],
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0],
   ],
 };
 
 export const X3x3 = Template.bind({});
 X3x3.args = {
   gridData: [
-    [BoxContent.X, BoxContent.X, BoxContent.X],
-    [BoxContent.X, BoxContent.X, BoxContent.X],
-    [BoxContent.X, BoxContent.X, BoxContent.X],
+    [1, 1, 1],
+    [1, 1, 1],
+    [1, 1, 1],
   ],
 };
 
 export const O3x3 = Template.bind({});
 O3x3.args = {
   gridData: [
-    [BoxContent.O, BoxContent.O, BoxContent.O],
-    [BoxContent.O, BoxContent.O, BoxContent.O],
-    [BoxContent.O, BoxContent.O, BoxContent.O],
+    [2, 2, 2],
+    [2, 2, 2],
+    [2, 2, 2],
   ],
 };

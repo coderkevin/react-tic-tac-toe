@@ -1,17 +1,24 @@
 import { FunctionComponent, ReactNode } from "react";
 import styled from "@emotion/styled/macro";
 import TicTacToeBox from "./TicTacToeBox";
-import { GridData } from "../types";
+import { GridData } from "../game";
 
 interface TicTacToeGridProps {
   className?: string;
   gridData: GridData;
+  boxClick: Function;
 }
 
-const renderBoxes = (gridData: GridData): ReactNode[] => {
-  return gridData.reduce((boxComponents: ReactNode[], row) => {
-    row.forEach((box) => {
-      boxComponents.push(<TicTacToeBox content={box} />);
+const renderBoxes = (gridData: GridData, boxClick: Function): ReactNode[] => {
+  return gridData.reduce((boxComponents: ReactNode[], row, rowIndex) => {
+    row.forEach((box, columnIndex) => {
+      boxComponents.push(
+        <TicTacToeBox
+          key={`${rowIndex},${columnIndex}`}
+          content={box}
+          onClick={() => boxClick(rowIndex, columnIndex)}
+        />
+      );
     });
     return boxComponents;
   }, []);
@@ -20,8 +27,9 @@ const renderBoxes = (gridData: GridData): ReactNode[] => {
 const TicTacToeGrid: FunctionComponent<TicTacToeGridProps> = ({
   gridData,
   className,
+  boxClick,
 }) => {
-  return <div className={className}>{renderBoxes(gridData)}</div>;
+  return <div className={className}>{renderBoxes(gridData, boxClick)}</div>;
 };
 
 const StyledTicTacToeGrid = styled(TicTacToeGrid)`

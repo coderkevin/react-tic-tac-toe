@@ -1,9 +1,9 @@
 import { FunctionComponent } from "react";
 import styled from "@emotion/styled/macro";
-import { BoxContent } from "../types";
 
 interface TicTacToeBoxProps {
-  content: BoxContent;
+  content: number;
+  onClick: Function;
 }
 
 interface BoxColorProps {
@@ -72,19 +72,18 @@ const BoxX: FunctionComponent<BoxColorProps> = ({ color }) => {
   );
 };
 
-const TicTacToeBox: FunctionComponent<TicTacToeBoxProps> = ({ content }) => {
-  let contentComponent;
-
-  if (content === BoxContent.X) {
-    contentComponent = <BoxX color="#FF3020" />;
-  } else if (content === BoxContent.O) {
-    contentComponent = <BoxO color="#2030FF" />;
-  } else {
-    const onClick = () => console.log("click");
-    contentComponent = <BoxEmpty onClick={onClick} />;
+const TicTacToeBox: FunctionComponent<TicTacToeBoxProps> = ({
+  content,
+  onClick,
+}) => {
+  switch (content) {
+    case 1:
+      return <BoxX color="#FF3020" />;
+    case 2:
+      return <BoxO color="#2030FF" />;
+    default:
+      return <BoxEmpty onClick={onClick} />;
   }
-
-  return contentComponent;
 };
 
 export default TicTacToeBox;

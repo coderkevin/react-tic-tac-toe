@@ -1,7 +1,9 @@
 import styled from "@emotion/styled/macro";
 import MessageBox from "./MessageBox";
 import TicTacToeGrid from "./TicTacToeGrid/TicTacToeGrid";
-import { BoxContent } from "./types";
+import { createGame, playerTurn } from "./game";
+import { useState } from "react";
+import PlayAgainButton from "./PlayAgainButton";
 
 const StyledApp = styled.div`
   background-color: #282c34;
@@ -9,7 +11,7 @@ const StyledApp = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   font-size: 16pt;
   color: white;
 `;
@@ -27,25 +29,37 @@ const StyledHeader = styled.header`
   padding: 1em;
 `;
 
-const StyledBody = styled.div`
-  flex-grow: 1;
-  padding: 1em;
+const StyledGrid = styled(TicTacToeGrid)`
+  margin: 1em;
+`;
+
+const StyledPlayAgainButton = styled(PlayAgainButton)`
+  margin: 1em;
 `;
 
 function App() {
-  const gridData = [
-    [BoxContent.X, BoxContent.O, BoxContent.X],
-    [BoxContent.X, BoxContent.O, BoxContent.X],
-    [BoxContent.X, BoxContent.O, BoxContent.X],
-  ];
+  const [game, setGame] = useState(createGame(3, 3));
+
+  const boxClick = (row: number, column: number) => {
+    if (!game.gameOver) {
+      setGame(playerTurn(game, row, column));
+    }
+  };
+
+  let playAgainButton = null;
+
+  if (game.gameOver) {
+    playAgainButton = (
+      <StyledPlayAgainButton onClick={() => setGame(createGame(3, 3))} />
+    );
+  }
 
   return (
     <StyledApp>
       <StyledHeader>Tic Tac Toe</StyledHeader>
-      <MessageBox>Testing...</MessageBox>
-      <StyledBody>
-        <TicTacToeGrid gridData={gridData} />
-      </StyledBody>
+      <MessageBox game={game} />
+      <StyledGrid gridData={game.grid} boxClick={boxClick} />
+      {playAgainButton}
     </StyledApp>
   );
 }
