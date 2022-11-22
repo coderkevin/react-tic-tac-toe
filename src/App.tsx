@@ -1,4 +1,5 @@
 import styled from "@emotion/styled/macro";
+import MessageBox from "./MessageBox";
 import TicTacToeGrid from "./TicTacToeGrid/TicTacToeGrid";
 import { BoxContent } from "./types";
 
@@ -41,6 +42,7 @@ function App() {
   return (
     <StyledApp>
       <StyledHeader>Tic Tac Toe</StyledHeader>
+      <MessageBox>Testing...</MessageBox>
       <StyledBody>
         <TicTacToeGrid gridData={gridData} />
       </StyledBody>
